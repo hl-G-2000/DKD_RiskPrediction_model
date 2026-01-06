@@ -8,6 +8,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
 import shap
 
+@st.cache_resource
 
 def VSpace(px):
     """一个简单的函数，用于在 Streamlit 中创建指定像素的垂直空间"""
