@@ -17,8 +17,8 @@ def VSpace(px):
 
 # Load the trained AutoGluon model
 # 模型路径：./Result_auto_DKD_s73_try6/
-predictor = TabularPredictor.load('./DKD_model')  
-best_model = "LightGBM_BAG_L1/T3"  # 最佳模型名称
+predictor = TabularPredictor.load('./DKD_model_WEB')  
+best_model = "LightGBM_BAG_L1/T3_FULL"  # 最佳模型名称
 
 # Define the feature options
 Gender_options = {
