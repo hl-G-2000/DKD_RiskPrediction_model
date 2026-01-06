@@ -40,27 +40,21 @@ st.title("Diabetic Kidney Disease (DKD) Risk Predictor")
 # Sidebar for input options
 st.sidebar.header("Input Patient Data")  # 侧边栏输入样本数据
 
-Age = st.sidebar.number_input("Age (年龄):", min_value=18, max_value=100, value=60)
-Gender = st.sidebar.selectbox("Gender (性别):", options=list(Gender_options.keys()), format_func=lambda x: Gender_options[x])
-DM_Duration = st.sidebar.number_input("DM Duration (糖尿病病程, 年):", min_value=0.0, max_value=50.0, value=5.0, step=0.5)
-Inj_Freq = st.sidebar.selectbox("Insulin Use (胰岛素使用):", options=list(Inj_Freq_options.keys()), format_func=lambda x: Inj_Freq_options[x])
+Age = st.sidebar.number_input("Age:", min_value=18, max_value=100, value=60)
+Gender = st.sidebar.selectbox("Gender:", options=list(Gender_options.keys()), format_func=lambda x: Gender_options[x])
+DM_Duration = st.sidebar.number_input("DM Duration (years):", min_value=0.0, max_value=50.0, value=5.0, step=0.5)
+Inj_Freq = st.sidebar.selectbox("Insulin Use Freq (Day):", options=list(Inj_Freq_options.keys()), format_func=lambda x: Inj_Freq_options[x])
 
-st.sidebar.subheader("Laboratory Tests (实验室检查)")
+st.sidebar.subheader("Laboratory Tests")
 Glu = st.sidebar.number_input("Glucose (Glu, mmol/L):", min_value=0.0, max_value=30.0, value=7.0, step=0.1)
 HbA1c = st.sidebar.number_input("HbA1c (%):", min_value=4.0, max_value=15.0, value=7.0, step=0.1)
 Cr = st.sidebar.number_input("Creatinine (Cr, μmol/L):", min_value=0.0, max_value=500.0, value=80.0, step=1.0)
 SBP = st.sidebar.number_input("Systolic BP (SBP, mmHg):", min_value=80, max_value=220, value=130)
-DBP = st.sidebar.number_input("Diastolic BP (DBP, mmHg):", min_value=40, max_value=140, value=80)
 TC = st.sidebar.number_input("Total Cholesterol (TC, mmol/L):", min_value=0.0, max_value=15.0, value=5.0, step=0.1)
 LDL_C = st.sidebar.number_input("LDL-C (mmol/L):", min_value=0.0, max_value=10.0, value=3.0, step=0.1)
-HDL_C = st.sidebar.number_input("HDL-C (mmol/L):", min_value=0.0, max_value=5.0, value=1.2, step=0.1)
-TG = st.sidebar.number_input("Triglycerides (TG, mmol/L):", min_value=0.0, max_value=20.0, value=1.5, step=0.1)
 ALT = st.sidebar.number_input("ALT (U/L):", min_value=0.0, max_value=500.0, value=25.0, step=1.0)
 AST = st.sidebar.number_input("AST (U/L):", min_value=0.0, max_value=500.0, value=25.0, step=1.0)
 PLT = st.sidebar.number_input("Platelet (PLT, 10^9/L):", min_value=0.0, max_value=800.0, value=200.0, step=1.0)
-HGB = st.sidebar.number_input("Hemoglobin (HGB, g/L):", min_value=0.0, max_value=200.0, value=140.0, step=1.0)
-WBC = st.sidebar.number_input("WBC (10^9/L):", min_value=0.0, max_value=50.0, value=7.0, step=0.1)
-BMI = st.sidebar.number_input("BMI (kg/m²):", min_value=10.0, max_value=60.0, value=25.0, step=0.1)
 
 # 添加一个 50 像素的垂直空白
 VSpace(50)
@@ -68,11 +62,10 @@ VSpace(50)
 st.subheader("Process the input and make a prediction")
 # Process the input and make a prediction
 # 注意：特征顺序需要与训练时一致
-feature_values = [Age, Gender, DM_Duration, Inj_Freq, Glu, HbA1c, Cr, SBP, DBP, 
-                  TC, LDL_C, HDL_C, TG, ALT, AST, PLT, HGB, WBC, BMI]
+feature_values = [Age, Gender, DM_Duration, Inj_Freq, Glu, HbA1c, Cr, SBP, 
+                  TC, LDL_C,  ALT, AST, PLT ]
 feature_names = ["Age", "Gender", "DM_Duration", "Inj_Freq", "Glu", "HbA1c", "Cr", 
-                 "SBP", "DBP", "TC", "LDL_C", "HDL_C", "TG", "ALT", "AST", 
-                 "PLT", "HGB", "WBC", "BMI"]
+                 "SBP", "TC", "LDL_C",  "ALT", "AST", "PLT" ]
 features = pd.DataFrame([feature_values], columns=feature_names) 
 
 if st.button("Make Prediction"):  # 如果点击了预测按钮
