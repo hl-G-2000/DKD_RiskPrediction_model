@@ -4,4 +4,4 @@ shap==0.42.1
 streamlit-shap
 matplotlib
 pillow
-
+setuptools
